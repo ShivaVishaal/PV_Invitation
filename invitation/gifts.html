@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Registry — Vishal &amp; Pooja</title>
+  <meta name="description" content="Choose a gift for Vishal & Pooja's new home">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory: #F7F3E8;
+      --ivory-deep: #EFE7D4;
+      --ink: #2B2A26;
+      --terracotta: #C77B86;
+      --terracotta-deep: #A85F6C;
+      --sage: #6B8F6B;
+      --warm-gray: #8A8478;
+      --line: rgba(43, 42, 38, 0.12);
+      --max-w: 640px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .display {
+      font-family: 'Fraunces', serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--terracotta-deep);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      font-weight: 500;
+    }
+
+    header.page-header {
+      padding: 56px 0 36px;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-bottom: 28px;
+    }
+
+    .back-link:hover {
+      color: var(--terracotta-deep);
+    }
+
+    h1.page-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(32px, 7vw, 44px);
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    .page-sub {
+      margin-top: 14px;
+      color: var(--warm-gray);
+      font-size: 15px;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .filter-toggle {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--warm-gray);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .filter-toggle input {
+      accent-color: var(--terracotta-deep);
+      width: 15px;
+      height: 15px;
+    }
+
+    .gift-count {
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--warm-gray);
+      margin-top: 28px;
+      letter-spacing: 0.04em;
+    }
+
+    main {
+      padding-bottom: 96px;
+    }
+
+    .gift-list {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .gift-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px 22px;
+      background: var(--ivory-deep);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .gift-card.is-claimed {
+      opacity: 0.6;
+    }
+
+    .gift-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .gift-name {
+      font-family: 'Fraunces', serif;
+      font-size: 19px;
+      font-weight: 500;
+    }
+
+    .gift-link-row {
+      margin-top: 4px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .gift-price {
+      font-size: 14px;
+      color: var(--terracotta-deep);
+      font-weight: 500;
+    }
+
+    .gift-view-link {
+      font-size: 12.5px;
+      color: var(--warm-gray);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .gift-view-link:hover {
+      color: var(--terracotta-deep);
+      border-color: var(--terracotta-deep);
+    }
+
+    .gift-status {
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .claim-btn {
+      padding: 10px 18px;
+      background: var(--ink);
+      color: var(--ivory);
+      border: none;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .claim-btn:hover {
+      opacity: 0.88;
+    }
+
+    .claim-btn:active {
+      transform: scale(0.97);
+    }
+
+    .claim-btn:disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
+
+    .claimed-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--sage);
+      letter-spacing: 0.02em;
+    }
+
+    .claimed-badge svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--warm-gray);
+      font-size: 14px;
+    }
+
+    .error-state {
+      text-align: center;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--warm-gray);
+      font-size: 13.5px;
+      margin-top: 20px;
+    }
+
+    /* ---------- MODAL ---------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 27, 25, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 50;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--ivory);
+      border-radius: 12px;
+      padding: 32px 28px;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .modal-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .modal-card .modal-item-name {
+      margin-top: 4px;
+      color: var(--terracotta-deep);
+      font-size: 14px;
+    }
+
+    .modal-card .field {
+      margin-top: 18px;
+    }
+
+    .modal-card label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 7px;
+    }
+
+    .modal-card input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--ivory-deep);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .modal-card input:focus {
+      border-color: var(--terracotta-deep);
+    }
+
+    .modal-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-cancel,
+    .modal-confirm {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+
+    .modal-cancel {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .modal-confirm {
+      background: var(--ink);
+      color: var(--ivory);
+    }
+
+    .modal-confirm:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .modal-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--warm-gray);
+      text-align: center;
+    }
+
+    .modal-error {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #B85C5C;
+      text-align: center;
+      display: none;
+    }
+
+    .modal-error.show {
+      display: block;
+    }
+
+    @media (max-width: 480px) {
+      .gift-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .gift-status {
+        width: 100%;
+        text-align: left;
+      }
+
+      .claim-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="page-header">
+    <div class="wrap">
+      <a class="back-link" href="index.html">&larr; Back to invitation</a>
+      <div class="eyebrow">Gift Registry</div>
+      <h1 class="page-title display">A Few Things for Our New Home</h1>
+      <p class="page-sub">Your presence is truly the only gift we need. But for those who'd like to help us settle in,
+        here are a few things on our list — claim one and we'll know it's taken care of.</p>
+      <label class="filter-toggle">
+        <input type="checkbox" id="hideClaimedToggle">
+        <span>Show only available items</span>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div id="loadingState" class="loading-state">Loading gift list…</div>
+      <div id="giftCount" class="gift-count" style="display:none;"></div>
+      <div id="giftList" class="gift-list" style="display:none;"></div>
+      <div id="errorState" class="error-state" style="display:none;">
+        Couldn't load the gift list right now. Please refresh, or check back in a moment.
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ CLAIM MODAL ============ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <h3 class="display">Claim This Gift</h3>
+      <div class="modal-item-name" id="modalItemName"></div>
+
+      <div class="field">
+        <label for="claimName">Your Name</label>
+        <input type="text" id="claimName" placeholder="Full name">
+      </div>
+      <div class="field">
+        <label for="claimContact">Phone or Email</label>
+        <input type="text" id="claimContact" placeholder="So the couple can reach you">
+      </div>
+
+      <div class="modal-error" id="modalError">Something went wrong. Please try again.</div>
+
+      <div class="modal-actions">
+        <button class="modal-cancel" id="modalCancel">Cancel</button>
+        <button class="modal-confirm" id="modalConfirm">Confirm</button>
+      </div>
+      <p class="modal-note">Your name & contact stay private with the couple — only shown here as "claimed."</p>
+    </div>
+  </div>
+
+  <script>
+    /* ============================================================
+       CONFIG — paste your Google Apps Script Web App URL below.
+       See apps-script.gs for setup instructions.
+       ============================================================ */
+    const CONFIG = {
+      SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxLyy5kbCjOkj16RkbMW3e3OuzftiC-lafaUH87sJLR8er77W5kxZitYN9yqo7b89ErVg/exec"
+    };
+
+    /* ============================================================
+       GIFT ITEMS — edit this list to add/remove/change items.
+       itemId must be unique and must match a row in the "Gifts"
+       sheet tab (ItemId column) for live claim-status to work.
+       ============================================================ */
+    let GIFTS = [];
+    // const GIFTS = [
+    //   {
+    //     itemId: "gift-001",
+    //     name: "Dressing Table with Mirror and Lights",
+    //     price: "₹12000",
+    //     link: "https://www.amazon.in/s?k=dressing+table+with+mirror+and+lights"
+    //   },
+    //   {
+    //     itemId: "gift-002",
+    //     name: "Couple Tea Cup Set",
+    //     price: "₹800",
+    //     link: "https://www.amazon.in/s?k=couple+tea+cup+set"
+    //   },
+    //   {
+    //     itemId: "gift-003",
+    //     name: "Wall Clock",
+    //     price: "₹1500",
+    //     link: "https://www.amazon.in/s?k=wall+clock"
+    //   },
+    //   {
+    //     itemId: "gift-004",
+    //     name: "China Dinner Set",
+    //     price: "₹6200",
+    //     link: "https://www.amazon.in/s?k=china+dinner+set"
+    //   },
+    //   {
+    //     itemId: "gift-005",
+    //     name: "Home Theatre System",
+    //     price: "₹18000",
+    //     link: "https://www.amazon.in/s?k=home+theatre+system"
+    //   },
+    //   {
+    //     itemId: "gift-006",
+    //     name: "Bluetooth Speakers",
+    //     price: "₹5000",
+    //     link: "https://www.amazon.in/s?k=bluetooth+speakers"
+    //   },
+    //   {
+    //     itemId: "gift-007",
+    //     name: "Refrigerator",
+    //     price: "₹28000",
+    //     link: "https://www.amazon.in/s?k=refrigerator"
+    //   },
+    //   {
+    //     itemId: "gift-008",
+    //     name: "Washing Machine",
+    //     price: "₹22000",
+    //     link: "https://www.amazon.in/s?k=washing+machine"
+    //   },
+    //   {
+    //     itemId: "gift-009",
+    //     name: "Smart LED Television (43\")",
+    //     price: "₹28000",
+    //     link: "https://www.amazon.in/s?k=43+inch+smart+tv"
+    //   },
+    //   {
+    //     itemId: "gift-010",
+    //     name: "Air Conditioner (Bedroom)",
+    //     price: "₹32000",
+    //     link: "https://www.amazon.in/s?k=split+air+conditioner"
+    //   },
+    //   {
+    //     itemId: "gift-011",
+    //     name: "Air Conditioner (Living Room)",
+    //     price: "₹32000",
+    //     link: "https://www.amazon.in/s?k=split+air+conditioner"
+    //   },
+    //   {
+    //     itemId: "gift-012",
+    //     name: "Gas Stove",
+    //     price: "₹4500",
+    //     link: "https://www.amazon.in/s?k=gas+stove+4+burner"
+    //   },
+    //   {
+    //     itemId: "gift-013",
+    //     name: "Induction Cooktop",
+    //     price: "₹2500",
+    //     link: "https://www.amazon.in/s?k=induction+cooktop"
+    //   },
+    //   {
+    //     itemId: "gift-014",
+    //     name: "Plates & Utensils Set",
+    //     price: "₹3500",
+    //     link: "https://www.amazon.in/s?k=plates+and+utensils+set"
+    //   },
+    //   {
+    //     itemId: "gift-015",
+    //     name: "Cupboard / Wardrobe",
+    //     price: "₹20000",
+    //     link: "https://www.amazon.in/s?k=wardrobe+cupboard"
+    //   },
+    //   {
+    //     itemId: "gift-016",
+    //     name: "Kettle",
+    //     price: "₹1200",
+    //     link: "https://www.amazon.in/s?k=electric+kettle"
+    //   },
+    //   {
+    //     itemId: "gift-017",
+    //     name: "Kettle (Second)",
+    //     price: "₹1200",
+    //     link: "https://www.amazon.in/s?k=electric+kettle"
+    //   },
+    //   {
+    //     itemId: "gift-018",
+    //     name: "Mattress (Bedroom 1)",
+    //     price: "₹15000",
+    //     link: "https://www.amazon.in/s?k=mattress+queen+size"
+    //   },
+    //   {
+    //     itemId: "gift-019",
+    //     name: "Mattress (Bedroom 2)",
+    //     price: "₹15000",
+    //     link: "https://www.amazon.in/s?k=mattress+queen+size"
+    //   },
+    //   {
+    //     itemId: "gift-020",
+    //     name: "Microwave Oven",
+    //     price: "₹9000",
+    //     link: "https://www.amazon.in/s?k=microwave+oven"
+    //   },
+    //   {
+    //     itemId: "gift-021",
+    //     name: "Pressure Cooker",
+    //     price: "₹2200",
+    //     link: "https://www.amazon.in/s?k=pressure+cooker"
+    //   },
+    //   {
+    //     itemId: "gift-022",
+    //     name: "Rice Cooker",
+    //     price: "₹2500",
+    //     link: "https://www.amazon.in/s?k=rice+cooker"
+    //   },
+    //   {
+    //     itemId: "gift-023",
+    //     name: "Room Heater",
+    //     price: "₹2500",
+    //     link: "https://www.amazon.in/s?k=room+heater"
+    //   },
+    //   {
+    //     itemId: "gift-024",
+    //     name: "Water Purifier",
+    //     price: "₹12000",
+    //     link: "https://www.amazon.in/s?k=water+purifier+ro"
+    //   },
+    //   {
+    //     itemId: "gift-025",
+    //     name: "WiFi Modem/Router",
+    //     price: "₹2500",
+    //     link: "https://www.amazon.in/s?k=wifi+modem+router"
+    //   },
+    //   {
+    //     itemId: "gift-026",
+    //     name: "Laptop Stand & Keyboard",
+    //     price: "₹2800",
+    //     link: "https://www.amazon.in/s?k=laptop+stand+and+keyboard"
+    //   },
+    //   {
+    //     itemId: "gift-027",
+    //     name: "Recliner Chair",
+    //     price: "₹15000",
+    //     link: "https://www.amazon.in/s?k=recliner+chair"
+    //   },
+    //   {
+    //     itemId: "gift-028",
+    //     name: "Dining Chairs (Set)",
+    //     price: "₹8000",
+    //     link: "https://www.amazon.in/s?k=dining+chairs+set"
+    //   },
+    //   {
+    //     itemId: "gift-029",
+    //     name: "Dining Table",
+    //     price: "₹15000",
+    //     link: "https://www.amazon.in/s?k=dining+table"
+    //   },
+    //   {
+    //     itemId: "gift-030",
+    //     name: "Sofa Set",
+    //     price: "₹25000",
+    //     link: "https://www.amazon.in/s?k=sofa+set"
+    //   },
+    //   {
+    //     itemId: "gift-031",
+    //     name: "Dishwasher",
+    //     price: "₹25000",
+    //     link: "https://www.amazon.in/s?k=dishwasher"
+    //   },
+    //   {
+    //     itemId: "gift-032",
+    //     name: "Robot Vacuum Cleaner",
+    //     price: "₹15000",
+    //     link: "https://www.amazon.in/s?k=robot+vacuum+cleaner"
+    //   },
+    //   {
+    //     itemId: "gift-033",
+    //     name: "Computer Desk",
+    //     price: "₹6000",
+    //     link: "https://www.amazon.in/s?k=computer+desk"
+    //   },
+    //   {
+    //     itemId: "gift-034",
+    //     name: "Computer Chair",
+    //     price: "₹7000",
+    //     link: "https://www.amazon.in/s?k=ergonomic+computer+chair"
+    //   },
+    //   {
+    //     itemId: "gift-035",
+    //     name: "Matching Kitchen Storage Dabbas Set",
+    //     price: "₹2000",
+    //     link: "https://www.amazon.in/s?k=kitchen+storage+containers+set"
+    //   },
+    //   {
+    //     itemId: "gift-036",
+    //     name: "Night Lamp",
+    //     price: "₹1200",
+    //     link: "https://www.amazon.in/s?k=night+lamp"
+    //   },
+    //   {
+    //     itemId: "gift-037",
+    //     name: "Bedside Table",
+    //     price: "₹3000",
+    //     link: "https://www.amazon.in/s?k=bedside+table+small"
+    //   },
+    //   {
+    //     itemId: "gift-038",
+    //     name: "Book Shelf",
+    //     price: "₹4500",
+    //     link: "https://www.amazon.in/s?k=book+shelf"
+    //   },
+    //   {
+    //     itemId: "gift-039",
+    //     name: "Vessels Stand",
+    //     price: "₹1800",
+    //     link: "https://www.amazon.in/s?k=kitchen+vessels+stand"
+    //   },
+    //   {
+    //     itemId: "gift-040",
+    //     name: "Onion Cutter",
+    //     price: "₹500",
+    //     link: "https://www.amazon.in/s?k=onion+cutter"
+    //   },
+    //   {
+    //     itemId: "gift-041",
+    //     name: "Cutting Board",
+    //     price: "₹600",
+    //     link: "https://www.amazon.in/s?k=cutting+board"
+    //   },
+    //   {
+    //     itemId: "gift-042",
+    //     name: "Knife Set",
+    //     price: "₹1500",
+    //     link: "https://www.amazon.in/s?k=kitchen+knife+set"
+    //   },
+    //   {
+    //     itemId: "gift-043",
+    //     name: "Starry Night Projector Lamp",
+    //     price: "₹1500",
+    //     link: "https://www.amazon.in/s?k=starry+night+projector+lamp"
+    //   },
+    //   {
+    //     itemId: "gift-044",
+    //     name: "Couple Running Shoes",
+    //     price: "₹6000",
+    //     link: "https://www.amazon.in/s?k=couple+running+shoes"
+    //   },
+    //   {
+    //     itemId: "gift-045",
+    //     name: "Trip Backpack",
+    //     price: "₹3000",
+    //     link: "https://www.amazon.in/s?k=travel+backpack"
+    //   },
+    //   {
+    //     itemId: "gift-046",
+    //     name: "Luggage Bag (Honeymoon)",
+    //     price: "₹6000",
+    //     link: "https://www.amazon.in/s?k=luggage+bag+set"
+    //   },
+    //   {
+    //     itemId: "gift-047",
+    //     name: "Hair Dryer",
+    //     price: "₹2000",
+    //     link: "https://www.amazon.in/s?k=hair+dryer"
+    //   },
+    //   {
+    //     itemId: "gift-048",
+    //     name: "Blue Ray / Blue Light Glasses",
+    //     price: "₹1200",
+    //     link: "https://www.amazon.in/s?k=blue+light+blocking+glasses"
+    //   },
+    //   {
+    //     itemId: "gift-049",
+    //     name: "Massager",
+    //     price: "₹3500",
+    //     link: "https://www.amazon.in/s?k=full+body+massager"
+    //   },
+    //   {
+    //     itemId: "gift-050",
+    //     name: "Yoga Mats (Pair)",
+    //     price: "₹1500",
+    //     link: "https://www.amazon.in/s?k=yoga+mat"
+    //   },
+    //   {
+    //     itemId: "gift-051",
+    //     name: "Wallet & Passport Holder with Charms",
+    //     price: "₹1800",
+    //     link: "https://www.amazon.in/s?k=passport+holder+wallet"
+    //   },
+    //   {
+    //     itemId: "gift-052",
+    //     name: "Table Fan",
+    //     price: "₹2000",
+    //     link: "https://www.amazon.in/s?k=table+fan"
+    //   },
+    //   {
+    //     itemId: "gift-053",
+    //     name: "Fridge Storage Containers",
+    //     price: "₹1500",
+    //     link: "https://www.amazon.in/s?k=fridge+storage+containers"
+    //   },
+    //   {
+    //     itemId: "gift-054",
+    //     name: "Slicer & Grater Set",
+    //     price: "₹900",
+    //     link: "https://www.amazon.in/s?k=slicer+and+grater+set"
+    //   },
+    //   {
+    //     itemId: "gift-055",
+    //     name: "Pull Up Bar",
+    //     price: "₹2000",
+    //     link: "https://www.amazon.in/s?k=pull+up+bar"
+    //   },
+    //   {
+    //     itemId: "gift-056",
+    //     name: "Adjustable Table",
+    //     price: "₹3500",
+    //     link: "https://www.amazon.in/s?k=adjustable+laptop+table"
+    //   },
+    //   {
+    //     itemId: "gift-057",
+    //     name: "Bean Bags (Pair)",
+    //     price: "₹4000",
+    //     link: "https://www.amazon.in/s?k=bean+bag+chair"
+    //   }
+    // ];
+
+    const listEl = document.getElementById('giftList');
+    const loadingEl = document.getElementById('loadingState');
+    const errorEl = document.getElementById('errorState');
+    const countEl = document.getElementById('giftCount');
+    const hideClaimedToggle = document.getElementById('hideClaimedToggle');
+    let claimStatus = {};
+    let activeItem = null;
+
+    function checkIcon() {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    }
+
+    function renderGifts() {
+      listEl.innerHTML = "";
+
+      const hideClaimed = hideClaimedToggle.checked;
+
+      const claimedCount = GIFTS.filter(item => item.claimed).length;
+
+      const visibleItems = hideClaimed
+        ? GIFTS.filter(item => !item.claimed)
+        : GIFTS;
+
+      countEl.textContent =
+        `${GIFTS.length - claimedCount} of ${GIFTS.length} gifts still available`;
+
+      countEl.style.display = "block";
+
+      visibleItems.forEach(item => {
+
+        const card = document.createElement("div");
+        card.className =
+          "gift-card" + (item.claimed ? " is-claimed" : "");
+
+        card.innerHTML = `
+      <div class="gift-info">
+        <div class="gift-name display">${item.name}</div>
+
+        <div class="gift-link-row">
+          <span class="gift-price">${item.price}</span>
+
+          <a class="gift-view-link"
+             href="${item.link}"
+             target="_blank"
+             rel="noopener">
+             View Product Link →
+          </a>
+        </div>
+      </div>
+
+      <div class="gift-status">
+
+        ${item.claimed
+            ? `<span class="claimed-badge">
+                ${checkIcon()}
+                Already Claimed
+             </span>`
+            : `<button class="claim-btn"
+                     data-id="${item.itemId}"
+                     data-name="${item.name}">
+                Claim This Gift
+             </button>`
+          }
+
+      </div>
+    `;
+
+        listEl.appendChild(card);
+
+      });
+
+      listEl.querySelectorAll(".claim-btn").forEach(btn => {
+        btn.addEventListener("click", () =>
+          openModal(btn.dataset.id, btn.dataset.name)
+        );
+      });
+
+      loadingEl.style.display = "none";
+      listEl.style.display = "flex";
+    }
+
+    hideClaimedToggle.addEventListener('change', renderGifts);
+
+    // async function loadGiftStatus() {
+    //   // If no script URL configured yet, just show everything as available (demo mode)
+    //   if (!CONFIG.SCRIPT_URL || CONFIG.SCRIPT_URL.includes('PASTE_YOUR')) {
+    //     claimStatus = {};
+    //     renderGifts();
+    //     return;
+    //   }
+    //   try {
+    //     const res = await fetch(`${CONFIG.SCRIPT_URL}?action=getGifts`);
+    //     const data = await res.json();
+    //     claimStatus = data.gifts || {};
+    //     renderGifts();
+    //   } catch (err) {
+    //     loadingEl.style.display = 'none';
+    //     errorEl.style.display = 'block';
+    //   }
+    // }
+
+    async function loadGifts() {
+      loadingEl.style.display = "block";
+
+      try {
+        const response = await fetch(`${CONFIG.SCRIPT_URL}?action=gifts`);
+        const data = await response.json();
+
+        GIFTS = data;
+
+        // Build claimStatus from sheet
+        claimStatus = {};
+
+        data.forEach(item => {
+          claimStatus[item.itemId] = item.claimed;
+        });
+
+        renderGifts();
+
+      } catch (err) {
+        console.error(err);
+        loadingEl.innerHTML = "Failed to load gifts.";
+      }
+    }
+
+    // ---------- Modal ----------
+    const overlay = document.getElementById('modalOverlay');
+    const modalItemName = document.getElementById('modalItemName');
+    const claimNameInput = document.getElementById('claimName');
+    const claimContactInput = document.getElementById('claimContact');
+    const modalConfirm = document.getElementById('modalConfirm');
+    const modalCancel = document.getElementById('modalCancel');
+    const modalError = document.getElementById('modalError');
+
+    function openModal(itemId, itemName) {
+      activeItem = itemId;
+      modalItemName.textContent = itemName;
+      claimNameInput.value = '';
+      claimContactInput.value = '';
+      modalError.classList.remove('show');
+      overlay.classList.add('show');
+    }
+    function closeModal() {
+      overlay.classList.remove('show');
+      activeItem = null;
+    }
+    modalCancel.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+
+    modalConfirm.addEventListener('click', async () => {
+      const name = claimNameInput.value.trim();
+      const contact = claimContactInput.value.trim();
+      if (!name || !contact) {
+        modalError.textContent = 'Please fill in both your name and contact.';
+        modalError.classList.add('show');
+        return;
+      }
+
+      modalConfirm.disabled = true;
+      modalConfirm.textContent = 'Saving…';
+
+      if (!CONFIG.SCRIPT_URL || CONFIG.SCRIPT_URL.includes('PASTE_YOUR')) {
+        // Demo mode — no backend configured yet
+        claimStatus[activeItem] = true;
+        renderGifts();
+        closeModal();
+        modalConfirm.disabled = false;
+        modalConfirm.textContent = 'Confirm';
+        return;
+      }
+
+      try {
+        const res = await fetch(CONFIG.SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'claimGift', itemId: activeItem, name, contact })
+        });
+        const data = await res.json();
+        if (data.success) {
+          // claimStatus[activeItem] = true;
+          // renderGifts();
+          const gift = GIFTS.find(g => g.itemId === activeItem);
+
+          if (gift) {
+            gift.claimed = true;
+          }
+
+          renderGifts();
+          closeModal();
+        } else {
+          modalError.textContent = data.error === 'Already claimed'
+            ? 'Someone just claimed this gift — please pick another.'
+            : 'Something went wrong. Please try again.';
+          modalError.classList.add('show');
+          // await loadGiftStatus();
+          await loadGifts();
+        }
+      } catch (err) {
+        modalError.textContent = 'Could not connect. Please check your connection and try again.';
+        modalError.classList.add('show');
+      }
+
+      modalConfirm.disabled = false;
+      modalConfirm.textContent = 'Confirm';
+    });
+
+    //loadGiftStatus();
+    loadGifts();
+  </script>
+
+</body>
+
+</html>
